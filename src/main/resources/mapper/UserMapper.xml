@@ -15,10 +15,53 @@
     </select>
 
     <select id="getUserList" resultType="com.wyc.hm.entity.User" parameterType="com.wyc.hm.entity.User">
-        SELECT
-        *
-        FROM
-        user
+        SELECT * FROM user where 1=1
+        <if test="userName!=null and userName!=''">
+            userName like concat('%',#{userName},'%')
+        </if>
     </select>
+
+    <insert id="addDk" parameterType="com.wyc.hm.entity.Dk">
+        insert into dk(userId, dkTime) values(#{userId},#{dkTime})
+    </insert>
+
+    <select id="getDkList" parameterType="com.wyc.hm.entity.Dto.UserDto" resultType="com.wyc.hm.entity.Dto.UserDto">
+        select d.dkTime,u.* from dk d,user u where u.userId=d.userId
+        <if test="userId!=null and userId!=''">
+            and userId=#{userId}
+        </if>
+    </select>
+
+    <update id="changeUser" parameterType="com.wyc.hm.entity.User">
+        update set userId=#{userId}
+        <if test="userName!=null and userName!=''">
+            ,userName=#{userName}
+        </if>
+        <if test="password!=null and password!=''">
+            ,password=#{password}
+        </if>
+        <if test="permission!=null and permission!=''">
+            ,permission=#{permission}
+        </if>
+        <if test="ks!=null and ks!=''">
+            ,ks=#{ks}
+        </if>
+        <if test="phone!=null and phone!=''">
+            ,phone=#{phone}
+        </if>
+        <if test="xb!=null and xb!=''">
+            ,xb=#{xb}
+        </if>
+        from user where userId=#{userId}
+    </update>
+
+    <insert id="addUser" parameterType="com.wyc.hm.entity.User">
+        insert into user(userName, password, permission, ks, phone, xb)
+        values(#{userName},#{password},#{permission},#{ks},#{phone},#{xb})
+    </insert>
+
+    <delete id="deleteUser" parameterType="com.wyc.hm.entity.User">
+        delete from user where userId=#{userId}
+    </delete>
 
 </mapper>

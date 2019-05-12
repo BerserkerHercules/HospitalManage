@@ -24,4 +24,8 @@
         </if>
     </select>
 
+    <update id="agreeQj" parameterType="com.wyc.hm.entity.Qjsq">
+        update set qjzt=#{qjzt} from qjsq where userId=#{userId}
+    </update>
+
 </mapper>

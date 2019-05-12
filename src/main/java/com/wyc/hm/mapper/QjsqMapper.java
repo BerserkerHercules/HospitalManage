@@ -21,4 +21,6 @@ public interface QjsqMapper {
 
     Qjsq getQj(Qjsq qjsq);
 
+    void agreeQj(Qjsq qjsq) throws Exception;
+
 }

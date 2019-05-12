@@ -36,7 +36,7 @@ public class QjsqController {
             qjsqService.addQjsq(qjsq);
         } catch (Exception e) {
             System.out.println("------提交申请失败：" + e);
-            jsonObject = JSON.parseObject("{success:false,msg:\"提交失败！\"}");
+            return JSON.parseObject("{success:false,msg:\"提交失败！\"}");
         }
         return jsonObject;
     }
@@ -45,7 +45,6 @@ public class QjsqController {
     public JSONArray getQjList(@RequestBody Qjsq qjsq) {
         List<Qjsq> list = qjsqService.getQjList(qjsq);
         String jsonStr = JsonUtil.serializeDate(list);
-        System.out.println("------ 开始时间：" + jsonStr);
         return JSON.parseArray(jsonStr);
     }
 
@@ -53,8 +52,17 @@ public class QjsqController {
     public JSONObject getQjXx(@RequestBody Qjsq qjsq) {
         Qjsq qjsq1 = qjsqService.getQj(qjsq);
         String jsonStr = JsonUtil.serialize(qjsq1);
-        System.out.println("------ 开始时间：" + qjsq1.getKsTime());
         return JSON.parseObject(jsonStr);
+    }
+
+    @RequestMapping(value = "/agreeQj")
+    public JSONObject agreeQj(@RequestBody Qjsq qjsq) {
+        try{
+            qjsqService.agreeQj(qjsq);
+        }catch (Exception e){
+            return JSON.parseObject("{success:false,msg:\"审批失败！\"}");
+        }
+        return JSON.parseObject("{success:true,msg:\"审批成功！\"}");
     }
 
     public static void main(String[] args) {

@@ -1,7 +1,8 @@
 package com.wyc.hm.service;
 
 
-
+import com.wyc.hm.entity.Dk;
+import com.wyc.hm.entity.Dto.UserDto;
 import com.wyc.hm.entity.User;
 
 import java.util.List;
@@ -14,23 +15,18 @@ import java.util.List;
  */
 public interface UserService {
 
-    /**
-     * Description 登录
-     *
-     * @param user 用户输入数据
-     * @return User
-     * @author ZhengJiawei
-     * @date 2019-03-22 14:14:27
-     */
     User login(User user);
 
-    /**
-     * Description
-     *
-     * @return List<User>
-     * @author ZhengJiawei
-     * @date 2019-03-22 14:15:14
-     */
-    List<User> getUserList();
+    List<User> getUserList(User user);
+
+    void addDk(Dk dk) throws Exception;
+
+    List<UserDto> getDkList(UserDto userDto);
+
+    void changeUser(User user) throws Exception;
+
+    void addUser(User user) throws Exception;
+
+    void deleteUser(User user) throws Exception;
 
 }

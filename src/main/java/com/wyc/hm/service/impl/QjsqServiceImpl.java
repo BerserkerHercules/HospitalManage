@@ -35,4 +35,9 @@ public class QjsqServiceImpl implements QjsqService {
     public Qjsq getQj(Qjsq qjsq) {
         return qjsqMapper.getQj(qjsq);
     }
+
+    @Override
+    public void agreeQj(Qjsq qjsq) throws Exception {
+        qjsqMapper.agreeQj(qjsq);
+    }
 }

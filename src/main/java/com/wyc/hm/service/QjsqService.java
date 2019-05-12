@@ -19,4 +19,6 @@ public interface QjsqService {
 
     Qjsq getQj(Qjsq qjsq);
 
+    void agreeQj(Qjsq qjsq) throws Exception;
+
 }
