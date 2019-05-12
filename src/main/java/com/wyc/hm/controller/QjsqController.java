@@ -29,35 +29,35 @@ public class QjsqController {
     private QjsqService qjsqService;
 
     @RequestMapping(value = "/addQjsq")
-    public JSONObject addQj(@RequestBody Qjsq qjsq){
+    public JSONObject addQj(@RequestBody Qjsq qjsq) {
         JSONObject jsonObject = JSON.parseObject("{success:true,msg:\"提交成功！\"}");
-        qjsq.setQjyy("0".equals(qjsq.getQjyy())?"事假":"病假");
-        try{
+        qjsq.setQjyy("0".equals(qjsq.getQjyy()) ? "事假" : "病假");
+        try {
             qjsqService.addQjsq(qjsq);
-        }catch (Exception e){
-            System.out.println("------提交申请失败："+e);
-            jsonObject =  JSON.parseObject("{success:false,msg:\"提交失败！\"}");
+        } catch (Exception e) {
+            System.out.println("------提交申请失败：" + e);
+            jsonObject = JSON.parseObject("{success:false,msg:\"提交失败！\"}");
         }
         return jsonObject;
     }
 
     @RequestMapping(value = "/getQjList")
-    public JSONArray getQjList(@RequestBody Qjsq qjsq){
+    public JSONArray getQjList(@RequestBody Qjsq qjsq) {
         List<Qjsq> list = qjsqService.getQjList(qjsq);
         String jsonStr = JsonUtil.serializeDate(list);
-        System.out.println("------ 开始时间："+jsonStr);
+        System.out.println("------ 开始时间：" + jsonStr);
         return JSON.parseArray(jsonStr);
     }
 
     @RequestMapping(value = "/getQjXx")
-    public JSONObject getQjXx(@RequestBody Qjsq qjsq){
+    public JSONObject getQjXx(@RequestBody Qjsq qjsq) {
         Qjsq qjsq1 = qjsqService.getQj(qjsq);
         String jsonStr = JsonUtil.serialize(qjsq1);
-        System.out.println("------ 开始时间："+qjsq1.getKsTime());
+        System.out.println("------ 开始时间：" + qjsq1.getKsTime());
         return JSON.parseObject(jsonStr);
     }
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         System.out.println("------ 开始时间：");
     }
 

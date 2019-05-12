@@ -23,17 +23,18 @@ public class WebController {
     private UserService userService;
 
     /**
-     *  登陆
+     * 登陆
+     *
      * @param user
      * @return
      */
     @RequestMapping(value = "/login")
     @ResponseBody
-    public JSONObject login(User user){
+    public JSONObject login(User user) {
         User user1 = userService.login(user);
         JSONObject jsonObject = new JSONObject();
-        if(user1!=null){
-            return JSON.parseObject("{statusCode:200,userId:\""+user1.getUserId()+"\"}");
+        if (user1 != null) {
+            return JSON.parseObject("{statusCode:200,userId:\"" + user1.getUserId() + "\",permission:\"" + user1.getPermission() + "\"}");
         }
         return jsonObject;
     }

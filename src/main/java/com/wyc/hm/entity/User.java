@@ -6,7 +6,7 @@ public class User {
   private int userId;
   private String userName;
   private String password;
-  private long permissionDegree;
+  private String permissionDegree;
   private String ks;
   private String phone;
   private String xb;
@@ -39,11 +39,11 @@ public class User {
   }
 
 
-  public long getPermissionDegree() {
+  public String getPermission() {
     return permissionDegree;
   }
 
-  public void setPermissionDegree(long permissionDegree) {
+  public void setPermission(String permissionDegree) {
     this.permissionDegree = permissionDegree;
   }
 
