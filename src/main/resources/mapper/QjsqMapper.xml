@@ -10,7 +10,7 @@
     </insert>
 
     <select id="getQjList" resultType="com.wyc.hm.entity.Qjsq" parameterType="com.wyc.hm.entity.Qjsq">
-        select qjId,userId,ksTime,qjzt,qjyy from qjsq where 1=1
+        select q.qjId,q.userId,q.ksTime,q.qjzt,q.qjyy,u.userName from qjsq q,user u where q.userId=u.userId
          <if test="userId!=null and userId !=''">
              and userId=#{userId}
          </if>
