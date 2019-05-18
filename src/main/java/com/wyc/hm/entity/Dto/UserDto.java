@@ -6,6 +6,7 @@ import java.util.Date;
 
 public class UserDto extends User {
     private Date dkTime;
+    private Date date;
 
     public Date getDkTime() {
         return dkTime;
@@ -15,4 +16,11 @@ public class UserDto extends User {
         this.dkTime = dkTime;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

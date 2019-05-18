@@ -11,6 +11,7 @@ import com.wyc.hm.service.UserService;
 import com.wyc.hm.util.DateUtil;
 import com.wyc.hm.util.JsonUtil;
 import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.util.StringUtil;
 import org.apache.poi.xssf.streaming.SXSSFRow;
 import org.apache.poi.xssf.streaming.SXSSFSheet;
 import org.apache.poi.xssf.streaming.SXSSFWorkbook;
@@ -18,7 +19,9 @@ import org.apache.poi.xssf.usermodel.XSSFCellStyle;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.thymeleaf.util.StringUtils;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
@@ -37,6 +40,7 @@ import java.util.List;
 @RequestMapping(value = "/user")
 public class UserController {
 
+    //public static final String  = "/user";
     @Resource
     private UserService userService;
 
@@ -53,6 +57,17 @@ public class UserController {
     @RequestMapping(value = "/getDkList")
     public JSONArray getDkList(@RequestBody UserDto userDto) {
         List<UserDto> list = userService.getDkList(userDto);
+        list.forEach(e->{
+            e.setDkTime(null);
+            e.setKs(null);
+            e.setPassword(null);
+            e.setPermission(null);
+            e.setPhone(null);
+            e.setUserId(null);
+            e.setUserName(null);
+            e.setXb(null);
+        });
+        list.remove(list.size()-1);
         String jsonStr = JsonUtil.serializeDate(list);
         return JSON.parseArray(jsonStr);
     }
@@ -97,7 +112,7 @@ public class UserController {
     /**
      * 导出
      */
-    @RequestMapping(value = "/export")
+    @RequestMapping(value = "/export",method = RequestMethod.GET)
     public void exportallDocumentaryExcel(HttpServletResponse response,UserDto userDto) throws IOException {
         try {
             List<UserDto> dkList = userService.getDkList(userDto);
@@ -124,7 +139,7 @@ public class UserController {
             for (UserDto u : dkList) {
 
                 String dateStr = DateUtil.dateToString(u.getDkTime(),"yyyy-MM-dd");
-                if(DateUtil.isThisMonth(dateStr)){
+                if(!StringUtils.isEmpty(dateStr)&&DateUtil.isThisMonth(dateStr)){
                     // 创建行
                     SXSSFRow dataRow = (SXSSFRow) sheet.createRow(sheet.getLastRowNum() + 1);
                     dataRow.createCell(0).setCellValue(u.getUserName());

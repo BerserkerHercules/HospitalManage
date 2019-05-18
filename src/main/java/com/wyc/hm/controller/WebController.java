@@ -34,7 +34,10 @@ public class WebController {
         User user1 = userService.login(user);
         JSONObject jsonObject = new JSONObject();
         if (user1 != null) {
-            return JSON.parseObject("{statusCode:200,userId:\"" + user1.getUserId() + "\",permission:\"" + user1.getPermission() + "\"}");
+            return JSON.parseObject("{statusCode:200," +
+                    "ks:\"" + user1.getKs() + "\"," +
+                    "userId:\"" + user1.getUserId() + "\"," +
+                    "permission:\"" + user1.getPermission() + "\"}");
         }
         return jsonObject;
     }

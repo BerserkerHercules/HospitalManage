@@ -3,7 +3,7 @@ package com.wyc.hm.entity;
 
 public class User {
 
-  private int userId;
+  private Integer userId;
   private String userName;
   private String password;
   private String permissionDegree;
@@ -12,11 +12,11 @@ public class User {
   private String xb;
 
 
-  public long getUserId() {
+  public Integer getUserId() {
     return userId;
   }
 
-  public void setUserId(int userId) {
+  public void setUserId(Integer userId) {
     this.userId = userId;
   }
 
