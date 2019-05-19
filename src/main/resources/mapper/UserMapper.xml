@@ -26,7 +26,7 @@
     </insert>
 
     <select id="getDkList" parameterType="com.wyc.hm.entity.Dto.UserDto" resultType="com.wyc.hm.entity.Dto.UserDto">
-        select d.dkTime as 'date',d.dkTime,u.* from dk d,user u where u.userId=d.userId
+        select DATE_FORMAT(d.dkTime,'%Y-%m-%d') as 'date',d.dkTime,u.* from dk d,user u where u.userId=d.userId
         <if test="userId!=null and userId!=''">
             and u.userId=#{userId}
         </if>

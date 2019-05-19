@@ -155,7 +155,7 @@ public class UserController {
                     dataRow.createCell(1).setCellValue(u.getXb());
                     dataRow.createCell(2).setCellValue(u.getKs());
                     dataRow.createCell(3).setCellValue(u.getPhone());
-                    dataRow.createCell(4).setCellValue(u.getDkTime());
+                    dataRow.createCell(4).setCellValue(u.getDate());
                 }
             }
 
@@ -178,6 +178,7 @@ public class UserController {
              * 处理在磁盘上备份此工作簿的临时文件 SXSSF分配临时文件，必须始终清除显式，通过调用dispose方法
              */
             workbook.dispose();
+            System.out.println( "导出用户成功");
 
         } catch (Exception e) {
             e.printStackTrace();
