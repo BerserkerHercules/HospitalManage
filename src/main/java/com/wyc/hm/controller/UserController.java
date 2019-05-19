@@ -59,8 +59,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "/countDk")
-    public JSONObject countDk() {
-        return JSON.parseObject("{count:"+userService.countDk()+"}");
+    public JSONObject countDk(@RequestBody Dk dk) {
+        return JSON.parseObject("{count:"+userService.countDk(dk)+"}");
     }
 
     @RequestMapping(value = "/getDkList")

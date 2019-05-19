@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer countDk() {
-        return userMapper.countDk();
+    public Integer countDk(Dk dk) {
+        return userMapper.countDk(dk);
     }
 }

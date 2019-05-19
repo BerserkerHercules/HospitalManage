@@ -29,5 +29,5 @@ public interface UserService {
 
     void deleteUser(User user) throws Exception;
     Dk haveDk(Dk dk);
-    Integer countDk();
+    Integer countDk(Dk dk);
 }

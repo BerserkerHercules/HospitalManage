@@ -33,6 +33,6 @@ public interface UserMapper {
 
     Dk haveDk(Dk dk);
 
-    Integer countDk();
+    Integer countDk(Dk dk);
 
 }

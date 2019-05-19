@@ -36,7 +36,7 @@
     </select>
 
     <update id="changeUser" parameterType="com.wyc.hm.entity.User">
-        update set userId=#{userId}
+        update user set userId=#{userId}
         <if test="userName!=null and userName!=''">
             ,userName=#{userName}
         </if>
@@ -55,7 +55,7 @@
         <if test="xb!=null and xb!=''">
             ,xb=#{xb}
         </if>
-        from user where userId=#{userId}
+        where userId=#{userId}
     </update>
 
     <insert id="addUser" parameterType="com.wyc.hm.entity.User">
@@ -71,8 +71,8 @@
         select * from dk where userId=#{userId} and DATE_FORMAT(dkTime,'%Y-%m-%d')=DATE_FORMAT(#{dkTime},'%Y-%m-%d') limit 1
     </select>
 
-    <select id="countDk" resultType="java.lang.Integer">
-        SELECT count(userId) FROM dk WHERE DATE_FORMAT( dkTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+    <select id="countDk" resultType="java.lang.Integer" parameterType="com.wyc.hm.entity.Dk">
+        SELECT count(userId) FROM dk WHERE userId=#{userId} and DATE_FORMAT( dkTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
     </select>
 
 </mapper>
