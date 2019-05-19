@@ -28,5 +28,6 @@ public interface UserService {
     void addUser(User user) throws Exception;
 
     void deleteUser(User user) throws Exception;
-
+    Dk haveDk(Dk dk);
+    Integer countDk();
 }

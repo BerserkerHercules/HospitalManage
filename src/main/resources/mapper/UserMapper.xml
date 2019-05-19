@@ -67,4 +67,12 @@
         delete from user where userId=#{userId}
     </delete>
 
+    <select id="haveDk" parameterType="com.wyc.hm.entity.Dk" resultType="com.wyc.hm.entity.Dk">
+        select * from dk where userId=#{userId} and DATE_FORMAT(dkTime,'%Y-%m-%d')=DATE_FORMAT(#{dkTime},'%Y-%m-%d') limit 1
+    </select>
+
+    <select id="countDk" resultType="java.lang.Integer">
+        SELECT count(userId) FROM dk WHERE DATE_FORMAT( dkTime, '%Y%m' ) = DATE_FORMAT( CURDATE( ) , '%Y%m' )
+    </select>
+
 </mapper>

@@ -58,4 +58,14 @@ public class UserServiceImpl implements UserService {
     public void deleteUser(User user) throws Exception {
         userMapper.deleteUser(user);
     }
+
+    @Override
+    public Dk haveDk(Dk dk) {
+        return userMapper.haveDk(dk);
+    }
+
+    @Override
+    public Integer countDk() {
+        return userMapper.countDk();
+    }
 }

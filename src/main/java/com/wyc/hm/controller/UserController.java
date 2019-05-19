@@ -46,12 +46,21 @@ public class UserController {
 
     @RequestMapping(value = "/addDk")
     public JSONObject addDk(@RequestBody Dk dk) {
+        Dk dk1 = userService.haveDk(dk);
+        if(dk1!=null){
+            return JSON.parseObject("{success:false,msg:\"今日已打卡！\"}");
+        }
         try{
             userService.addDk(dk);
         }catch (Exception e){
             return JSON.parseObject("{success:false,msg:\"打卡失败！\"}");
         }
         return JSON.parseObject("{success:true,msg:\"打卡成功！\"}");
+    }
+
+    @RequestMapping(value = "/countDk")
+    public JSONObject countDk() {
+        return JSON.parseObject("{count:"+userService.countDk()+"}");
     }
 
     @RequestMapping(value = "/getDkList")
@@ -67,7 +76,7 @@ public class UserController {
             e.setUserName(null);
             e.setXb(null);
         });
-        list.remove(list.size()-1);
+        //list.remove(list.size()-1);
         String jsonStr = JsonUtil.serializeDate(list);
         return JSON.parseArray(jsonStr);
     }

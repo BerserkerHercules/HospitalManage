@@ -31,4 +31,8 @@ public interface UserMapper {
 
     void deleteUser(User user) throws Exception;
 
+    Dk haveDk(Dk dk);
+
+    Integer countDk();
+
 }
